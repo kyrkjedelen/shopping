@@ -1,35 +1,41 @@
 require('dotenv').config();
 
 const mysql = require('mysql2');
-const connection = mysql.createConnection({
+const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: process.env.MYSQL_PASSWORD,
-    database: 'test'
+    database: 'shopping'
 });
-connection.connect();
+db.connect();
 
 const express = require('express');
 const app = express();
-const PORT = 8080;
+const server = {
+    port: 6969
+}
 app.listen(
-    PORT,
-    () => console.log(`it's alive on http://localhost:${PORT}`)
+    server.port,
+    () => console.log(`it's alive on http://localhost:${server.port}`)
 );
-
 app.use(express.static('public'));
+app.use(express.urlencoded({extended: true}));
 
-app.get('/test', (req, res) => {
-    res.status(200).send([
-        'test0', 'test1'
-    ])
+app.post('/api', (request, response) => {
+    const sqlCode = request.body.sql;
+    console.log(sqlCode);
+    db.connect((error) => {
+        if(error) throw error;
+        db.query(sqlCode, (error, databaseResult) => {
+            if(error) throw error;
+            return response.json(databaseResult);
+        });
+    })
 });
 
-connection.connect(error => {
-    if (error) throw error;
-    console.log('Connected!');
-    const sql = `
-        SELECT *
-        FROM testtable;
-    `;
+app.post('/test', (request, response) => {
+    console.log(request.originalUrl);
+    console.log(request.body);
+    response.redirect('/');
+    console.log('Ferdig');
 });

@@ -5,15 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="storage.js"></script>
+    <script src="makeform.js"></script>
+    <script src="columns.js"></script>
+    <script src="execute.js" defer></script>
 </head>
 <body>
-    <button onclick="testFetch()">Klikk her</button>
-    <script>
-        const testFetch = async () => {
-            const svar = await fetch('/test');
-            const svarJson = await svar.json();
-            console.log(svarJson);
-        }
-    </script>
+    <!--
+    <form action="/storeInDatabase?type=table" method="POST">
+        <div>
+            <label for="date-input">Dato</label>
+            <input id="date-input" type="date" name="dato">
+            <button class="remove-input-button" type="button">Add</button>
+            <button class="add-input-button" type="button">Remove</button>
+        </div>
+        <div>
+            <label for="butikk-input">Butikk</label>
+            <input id="butikk-input" type="number" name="Butikk" min="0">
+            <button class="remove-input-button" type="button">Add</button>
+            <button class="add-input-button" type="button">Remove</button>
+        </div>
+        <div>
+            <label for="start_tid-input">Starttid</label>
+            <input id="start_tid-input" type="number" name="startTid">
+            <button class="remove-input-button" type="button">Add</button>
+            <button class="add-input-button" type="button">Remove</button>
+        </div>
+        <div>
+            <label for="slutt_tid-input">Butikk</label>
+            <input id="slutt_tid-input" type="number" name="sluttTid">
+            <button class="remove-input-button" type="button">Add</button>
+            <button class="add-input-button" type="button">Remove</button>
+        </div>
+        <button type="reset">Reset</button>
+        <button type="submit">Submit</button>
+    </form>
+    -->
+    <form id="testForm" action="">
+
+    </form>
 </body>
 </html>
